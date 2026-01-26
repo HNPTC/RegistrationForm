@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單配置編輯器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            height: calc(100vh - 140px);
+            overflow-y: auto;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #06c755;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .form-section-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .input-group textarea {
+            min-height: 80px;
+            font-family: inherit;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .btn-primary {
+            background: #06c755;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .field-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .field-item-title {
+            font-weight: 500;
+        }
+
+        .field-item-type {
+            font-size: 12px;
+            color: #666;
+            background: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .field-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #ccc;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #06c755;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            left: 28px;
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .toolbar {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toolbar-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 工具列 -->
+    <div class="toolbar">
+        <div class="toolbar-title">📝 樣板表單配置編輯器</div>
+        <div class="toolbar-actions">
+            <button class="btn btn-secondary" onclick="loadConfig()">載入配置</button>
+            <button class="btn btn-secondary" onclick="importJSON()">匯入 JSON</button>
+            <button class="btn btn-primary" onclick="exportJSON()">匯出 JSON</button>
+        </div>
+    </div>
+
+    <!-- 編輯器主體 -->
+    <div class="editor-container">
+        <!-- 左側編輯區 -->
+        <div class="panel">
+            <div class="panel-title">⚙️ 配置編輯</div>
+
+            <!-- 基本設定 -->
+            <div class="form-section">
+                <div class="form-section-title">基本設定</div>
+
+                <div class="input-group">
+                    <label>表單標題</label>
+                    <input type="text" id="formTitle" value="頭頸專研活動報名表">
+                </div>
+
+                <div class="input-group">
+                    <label>版本號</label>
+                    <input type="text" id="formVersion" value="1.0">
+                </div>
+
+                <div class="input-group">
+                    <label>LIFF ID</label>
+                    <input type="text" id="liffId" placeholder="例: 2008806287-9a1hHluF">
+                </div>
+
+                <div class="input-group">
+                    <label>LINE OA ID</label>
+                    <input type="text" id="lineOaId" placeholder="例: @246trduk">
+                </div>
+
+                <div class="input-group">
+                    <label>Google Apps Script URL</label>
+                    <input type="text" id="gasUrl" placeholder="GAS 部署網址">
+                </div>
+            </div>
+
+            <!-- 橫幅設定 -->
+            <div class="form-section">
+                <div class="form-section-title">橫幅設定</div>
+
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="bannerEnabled" checked onchange="updatePreview()">
+                        顯示橫幅
+                    </label>
+                </div>
+
+                <div class="input-group">
+                    <label>圖片網址</label>
+                    <input type="text" id="bannerUrl" placeholder="https://...">
+                </div>
+
+                <div class="input-group">
+                    <label>替代文字</label>
+                    <input type="text" id="bannerAlt" placeholder="活動橫幅">
+                </div>
+            </div>
+
+            <!-- 欄位管理 -->
+            <div class="form-section">
+                <div class="form-section-title">表單欄位</div>
+                <div id="fieldsList">
+                    <!-- 欄位列表將由 JavaScript 生成 -->
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="addField()">
+                    + 新增欄位
+                </button>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn btn-primary" style="width: 100%;" onclick="updatePreview()">
+                    🔄 更新預覽
+                </button>
+            </div>
+        </div>
+
+        <!-- 右側預覽區 -->
+        <div class="panel">
+            <div class="panel-title">👁️ 即時預覽</div>
+            <iframe id="previewFrame" class="preview-frame" src="form-template.html"></iframe>
+        </div>
+    </div>
+
+    <!-- 隱藏的檔案輸入 -->
+    <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="handleFileImport(event)">
+
+    <script src="editor-app.js"></script>
+
+</body>
+
+</html>

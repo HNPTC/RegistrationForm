@@ -20,6 +20,13 @@
             --error-color: #e53935;
         }
 
+        /* 全域盒模型設定 */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
@@ -195,18 +202,9 @@
         </div>
     </div>
 
-    <!-- 成功畫面 (預設隱藏) -->
+    <!-- 成功畫面 (預設隱藏，內容由 JS 動態生成) -->
     <div id="successView" class="container hidden" style="text-align: center; padding: 40px 20px;">
-        <div style="font-size: 60px;">✅</div>
-        <h2 style="color: var(--primary-color);">報名成功！</h2>
-        <p style="color: #666; line-height: 1.6;">
-            我們已收到您的報名資訊。<br>
-            <span id="remindMsg" style="display:none; color: #ff9800;">屆時將會發送提醒通知給您。</span>
-        </p>
-        <button onclick="liff.closeWindow()"
-            style="margin-top: 20px; background: #333; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">
-            關閉視窗
-        </button>
+        <!-- 內容將由 form-renderer.js 動態生成 -->
     </div>
 
     <!-- 表單渲染引擎 -->

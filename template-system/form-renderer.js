@@ -21,7 +21,7 @@ class FormRenderer {
 
         try {
             await liff.init({ liffId: this.config.formMeta.liffId });
-            
+
             // 還原表單資料
             this.restoreFormData();
 
@@ -364,7 +364,7 @@ class FormRenderer {
         const div = document.getElementById('remindDetails');
         if (div) {
             div.style.display = show ? 'block' : 'none';
-            
+
             if (!show) {
                 const checkLine = document.getElementById('checkLine');
                 const checkEmail = document.getElementById('checkEmail');
@@ -407,7 +407,7 @@ class FormRenderer {
     updateLineStatusUI(isLoggedIn) {
         const btn = document.getElementById('btnLineLogin');
         const txt = document.getElementById('lineStatusText');
-        
+
         if (btn && txt) {
             if (isLoggedIn) {
                 btn.classList.add('hidden');
@@ -436,7 +436,7 @@ class FormRenderer {
      */
     async handleSubmit() {
         const form = document.getElementById('mainForm');
-        
+
         // 基本驗證
         if (!form.checkValidity()) {
             form.reportValidity();
@@ -445,7 +445,7 @@ class FormRenderer {
 
         // 收集表單資料
         const formData = this.collectFormData();
-        
+
         // 自訂驗證
         if (!this.validateFormData(formData)) {
             return;
@@ -487,34 +487,34 @@ class FormRenderer {
                     const input = document.getElementById(field.id);
                     if (input) data[field.id] = input.value.trim();
                     break;
-                
+
                 case 'radio':
                     const radio = document.querySelector(`input[name="${field.id}"]:checked`);
                     if (radio) data[field.id] = radio.value;
                     break;
-                
+
                 case 'checkbox':
                     const checkboxes = document.querySelectorAll(`input[name="${field.id}"]:checked`);
                     data[field.id] = Array.from(checkboxes).map(cb => cb.value).join(', ');
                     break;
-                
+
                 case 'remind-section':
                     const needRemind = document.querySelector('input[name="needRemind"]:checked')?.value;
                     const checkLine = document.getElementById('checkLine')?.checked;
                     const checkEmail = document.getElementById('checkEmail')?.checked;
                     const emailVal = document.getElementById('emailInput')?.value.trim();
-                    
+
                     data.needRemind = needRemind;
                     data.lineRemind = (needRemind === '是' && checkLine) ? '是' : '否';
                     data.email = emailVal || '';
                     data.emailRemind = (needRemind === '是' && checkEmail) ? '是' : '否';
-                    
+
                     // 計算提醒日期
                     if (needRemind === '是' && data.session) {
                         const dateMatch = data.session.match(/(\d+)\/(\d+)/);
                         if (dateMatch) {
                             const year = new Date().getFullYear();
-                            data.remindDate = `${year}-${dateMatch[1].padStart(2,'0')}-${dateMatch[2].padStart(2,'0')}`;
+                            data.remindDate = `${year}-${dateMatch[1].padStart(2, '0')}-${dateMatch[2].padStart(2, '0')}`;
                         }
                     }
                     break;
@@ -539,7 +539,7 @@ class FormRenderer {
         if (data.needRemind === '是') {
             const checkLine = document.getElementById('checkLine')?.checked;
             const checkEmail = document.getElementById('checkEmail')?.checked;
-            
+
             if (!checkLine && !checkEmail) {
                 alert('接收提醒需至少勾選 Line 或 Email 其中一種方式喔！');
                 return false;
@@ -578,7 +578,7 @@ class FormRenderer {
     showSuccessView(data) {
         localStorage.removeItem('liff_form_temp');
         document.getElementById('formContainer').style.display = 'none';
-        
+
         const successView = document.getElementById('successView');
         if (successView) {
             successView.classList.remove('hidden');
@@ -586,6 +586,61 @@ class FormRenderer {
                 const remindMsg = document.getElementById('remindMsg');
                 if (remindMsg) remindMsg.style.display = 'inline';
             }
+
+            // 動態生成成功畫面內容
+            const lineOaId = this.config.formMeta.lineOaId || '@246trduk';
+            const lineUrl = `https://line.me/R/ti/p/${lineOaId}`;
+
+            successView.innerHTML = `
+                <div style="font-size: 60px; margin-bottom: 10px;">✅</div>
+                <h2 style="color: var(--primary-color); margin-top: 0;">報名成功！</h2>
+                <p style="color: #666; line-height: 1.6; margin-bottom: 30px;">
+                    我們已收到您的報名資訊。<br>
+                    ${data.needRemind === '是' ? '<span style="color: #ff9800;">屆時將會發送提醒通知給您。</span>' : ''}
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                    
+                    <a href="${lineUrl}" target="_blank" style="text-decoration: none;">
+                        <button style="
+                            width: 280px;
+                            background-color: #06c755; 
+                            color: white; 
+                            border: none; 
+                            padding: 14px 0;
+                            border-radius: 8px; 
+                            font-size: 16px; 
+                            font-weight: bold; 
+                            cursor: pointer; 
+                            box-shadow: 0 4px 10px rgba(6, 199, 85, 0.3);
+                            display: flex; align-items: center; justify-content: center;
+                        ">
+                            <span style="font-size: 1.3em; margin-right: 8px;">💬</span>
+                            加入官方帳號好友
+                        </button>
+                    </a>
+
+                    <button onclick="liff.closeWindow()" style="
+                        width: 280px;
+                        background-color: #f0f0f0; 
+                        color: #666; 
+                        border: 1px solid #ddd; 
+                        padding: 14px 0;
+                        border-radius: 8px; 
+                        font-size: 16px; 
+                        font-weight: bold; 
+                        cursor: pointer;
+                        display: flex; align-items: center; justify-content: center;
+                    ">
+                        關閉視窗
+                    </button>
+                    
+                </div>
+
+                <p style="font-size: 12px; color: #aaa; margin-top: 20px;">
+                    加入後如有疑問可直接傳訊諮詢
+                </p>
+            `;
         }
     }
 
@@ -614,10 +669,10 @@ class FormRenderer {
     restoreFormData() {
         const saved = localStorage.getItem('liff_form_temp');
         if (!saved) return;
-        
+
         try {
             const data = JSON.parse(saved);
-            
+
             // 延遲還原,等待 DOM 渲染完成
             setTimeout(() => {
                 Object.keys(data).forEach(key => {
@@ -625,7 +680,7 @@ class FormRenderer {
                     if (input) {
                         input.value = data[key];
                     }
-                    
+
                     // 還原單選
                     const radio = document.querySelector(`input[name="${key}"][value="${data[key]}"]`);
                     if (radio) radio.click();

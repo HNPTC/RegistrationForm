@@ -1,4 +1,4 @@
-<!-- 頭頸專研活動報名系統 ver1.0 -->
+<!-- 頭頸專研活動報名系統 ver1.01 -->
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -6,17 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>頭頸專研活動報名表單</title>
-    <!-- 新增：Tailwind CSS CDN (讓 w-full 等語法生效) -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <style>
+        /* === 全域變數與基礎設定 === */
         :root {
             --primary-color: #06c755;
             --bg-color: #f5f5f5;
-            --btn-guest-color: #6c757d;
             --error-color: #e53935;
         }
 
+        /* [重要補齊] 全域盒模型設定：確保 padding 不會撐大元素寬度 (替代 Tailwind 預設行為) */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* [重要補齊] 基礎字體與背景 (替代 Tailwind 預設字體) */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
@@ -24,6 +30,7 @@
             margin: 0;
         }
 
+        /* === 容器與版面 === */
         .container {
             max-width: 500px;
             margin: 0 auto;
@@ -33,12 +40,37 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        /* 主標題樣式 */
+        .main-title {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+
+        /* 次標題樣式 */
         h2 {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
         }
 
+        /* 橫幅圖片區塊 */
+        .banner-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* === 表單元素 === */
         .form-group {
             margin-bottom: 20px;
         }
@@ -58,6 +90,7 @@
             color: var(--error-color);
         }
 
+        /* 輸入框 */
         input[type="text"],
         input[type="email"] {
             width: 100%;
@@ -65,7 +98,6 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
-            box-sizing: border-box;
             transition: border-color 0.3s;
         }
 
@@ -75,6 +107,7 @@
             outline: none;
         }
 
+        /* 選項按鈕 (Radio & Checkbox) */
         .radio-group,
         .checkbox-group {
             display: flex;
@@ -101,7 +134,7 @@
             transform: scale(1.2);
         }
 
-        /* === 提醒設定區塊樣式 === */
+        /* === 提醒設定區塊 === */
         .remind-settings {
             background-color: #f8f9fa;
             border: 1px solid #e9ecef;
@@ -109,7 +142,6 @@
             padding: 15px;
             margin-top: 10px;
             display: none;
-            /* 預設隱藏 */
         }
 
         .remind-sub-item {
@@ -124,6 +156,7 @@
             padding-bottom: 0;
         }
 
+        /* Line 連結按鈕 (表單內) */
         .connect-btn {
             background-color: #00B900;
             color: white;
@@ -177,7 +210,7 @@
             min-height: 20px;
         }
 
-        /* 隱藏元素 Helper */
+        /* === 工具類 === */
         .hidden {
             display: none !important;
         }
@@ -190,14 +223,13 @@
 
         <!-- 版本號顯示區塊 -->
         <div style="text-align: right; font-size: 12px; color: #aaa; margin-bottom: 0;">
-            頭頸專研活動報名系統 ver1.0
+            頭頸專研活動報名系統 ver1.01
         </div>
 
-        <h1>📝 頭頸專研活動報名表</h1>
-
-        <!-- 修改處：將 w-[500px] 改為 w-full，讓它自動適應父層的剩餘空間 -->
-        <div class="w-full mb-5">
-            <img src="https://i.duk.tw/xIs9FV.png" alt="講座橫幅" class="w-full h-auto block rounded-lg">
+        <h1 class="main-title">📝 頭頸專研活動報名表</h1>
+        <!-- 講座橫幅圖片 -->
+        <div class="banner-container">
+            <img src="https://i.duk.tw/xIs9FV.png" alt="講座橫幅" class="banner-img">
         </div>
 
         <!-- 活動內容介紹 (保持原樣) -->
@@ -231,7 +263,7 @@
                     台北市信義虎林街164巷34號1樓
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=頭頸專研物理治療所+台北市信義虎林街164巷34號1樓" target="_blank"
-                    style="display: inline-flex; align-items: center; color: var(--primary-color); text-decoration: none; font-weight: bold; font-size: 0.9em; border: 1px solid var(--primary-color); padding: 6px 12px; border-radius: 20px;">
+                    style="display: inline-flex; align-items: center; color: var(--primary-color); text-decoration: none; font-weight: bold; font-size: 0.9em; border: 1px solid var(--primary-color); padding: 6px 12px; border-radius: 8px;">
                     📍 開啟 Google 地圖
                 </a>
             </div>
@@ -349,18 +381,56 @@
         <div id="status"></div>
     </div>
 
-    <!-- 成功畫面 (預設隱藏) -->
-    <div id="successView" class="container hidden" style="text-align: center; padding: 40px 20px;">
-        <div style="font-size: 60px;">✅</div>
-        <h2 style="color: var(--primary-color);">報名成功！</h2>
-        <p style="color: #666; line-height: 1.6;">
+    <!-- 成功畫面 (預設隱藏，報名完成才顯示)-->
+    <div id="successView" class="container hidden" style="text-align: center; padding: 40px 25px;">
+        <div style="font-size: 60px; margin-bottom: 10px;">✅</div>
+        <h2 style="color: var(--primary-color); margin-top: 0;">報名成功！</h2>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 30px;">
             我們已收到您的報名資訊。<br>
             <span id="remindMsg" style="display:none; color: #ff9800;">屆時將會發送提醒通知給您。</span>
         </p>
-        <button onclick="liff.closeWindow()"
-            style="margin-top: 20px; background: #333; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">
-            關閉視窗
-        </button>
+
+        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+
+            <a href="https://line.me/R/ti/p/@246trduk" target="_blank" style="text-decoration: none;">
+                <button style="
+                width: 280px;
+                background-color: #06c755; 
+                color: white; 
+                border: none; 
+                padding: 14px 0; /* 改為 14px，與送出按鈕高度一致 */
+                border-radius: 8px; 
+                font-size: 16px; 
+                font-weight: bold; 
+                cursor: pointer; 
+                box-shadow: 0 4px 10px rgba(6, 199, 85, 0.3);
+                display: flex; align-items: center; justify-content: center;
+            ">
+                    <span style="font-size: 1.3em; margin-right: 8px;">💬</span>
+                    加入官方帳號好友
+                </button>
+            </a>
+
+            <button onclick="liff.closeWindow()" style="
+            width: 280px;
+            background-color: #f0f0f0; 
+            color: #666; 
+            border: 1px solid #ddd; 
+            padding: 14px 0; /* 改為 14px，與上方按鈕高度一致 */
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        ">
+                關閉視窗
+            </button>
+
+        </div>
+
+        <p style="font-size: 12px; color: #aaa; margin-top: 20px;">
+            加入後如有疑問可直接傳訊諮詢
+        </p>
     </div>
 
     <script>

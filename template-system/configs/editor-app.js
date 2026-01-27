@@ -879,6 +879,33 @@ function generateStandaloneHTML(config, rendererCode) {
             margin-top: 30px;
         }
 
+        /* 圖片和通用樣式 */
+        .w-full {
+            width: 100%;
+        }
+
+        .h-auto {
+            height: auto;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .rounded-lg {
+            border-radius: 8px;
+        }
+
+        .mb-5 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
         @media (max-width: 480px) {
             #formContainer {
                 padding: 20px 15px;

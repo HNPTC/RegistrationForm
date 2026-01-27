@@ -1,4 +1,337 @@
-/**
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>頭頸專研活動報名表</title>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        :root {
+            --primary-color: #06c755;
+            --primary-hover: #05b34a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px 10px;
+            min-height: 100vh;
+        }
+
+        #formContainer {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.05em;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .option-label:hover {
+            background: #f8f9fa;
+            border-color: var(--primary-color);
+        }
+
+        .option-label input[type="radio"],
+        .option-label input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--primary-hover);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .connect-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remind-settings {
+            display: none;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .remind-sub-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .line-status-text {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        #successView {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .action-area {
+            margin-top: 30px;
+        }
+
+        /* 圖片和通用樣式 */
+        .w-full {
+            width: 100%;
+        }
+
+        .h-auto {
+            height: auto;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .rounded-lg {
+            border-radius: 8px;
+        }
+
+        .mb-5 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            #formContainer {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="formContainer"></div>
+    <div id="successView" class="hidden"></div>
+
+    <script>
+        // 嵌入配置
+        const CONFIG = {
+  "formMeta": {
+    "title": "頭頸專研活動報名表",
+    "version": "2.0",
+    "liffId": "2008806287-9a1hHluF",
+    "lineOaId": "@246trduk",
+    "gasUrl": "https://script.google.com/macros/s/AKfycbx74tnCe5wk-9WXWR-6Nrb8VE1R3iaXq33T6tpitgjk0PCYreNSoilkQ6QSDhghf4jlPQ/exec",
+    "basePath": "https://hnptc.github.io/RegistrationForm/template-system",
+    "configFileName": "event_2026_02"
+  },
+  "banner": {
+    "enabled": true,
+    "imageUrl": "https://duk.tw/ehKVRe.jpg",
+    "altText": "講座橫幅"
+  },
+  "infoBlocks": [
+    {
+      "id": "activity-info",
+      "enabled": true,
+      "title": "活動內容",
+      "content": "十六年經驗專業物理治療師授課,現場分析肩頸僵硬來源、學習肩頸狀況自我檢測及舒緩方法。\n\n入場當天還可參加抽獎,有機會獲得小禮物哦！\n\n免費入場。座位有限,額滿為止。"
+    },
+    {
+      "id": "location",
+      "enabled": true,
+      "title": "地點",
+      "placeName": "頭頸專研物理治療所",
+      "address": "台北市信義虎林街164巷34號1樓",
+      "showMap": true,
+      "mapQuery": "頭頸專研物理治療所+台北市信義虎林街164巷34號1樓"
+    }
+  ],
+  "formFields": [
+    {
+      "id": "session",
+      "type": "radio",
+      "enabled": true,
+      "required": true,
+      "title": "報名場次",
+      "options": [
+        "1/30 (五) 10:00 - 11:30",
+        "2/08 (日) 14:30 - 16:00",
+        "2/11 (三) 19:00 - 20:30",
+        "2/24 (二) 14:30 - 16:00",
+        "3/02 (一) 19:00 - 20:30"
+      ]
+    },
+    {
+      "id": "realName",
+      "type": "text",
+      "enabled": true,
+      "required": true,
+      "title": "姓名",
+      "placeholder": "請輸入您的真實姓名"
+    },
+    {
+      "id": "gender",
+      "type": "radio",
+      "enabled": true,
+      "required": true,
+      "title": "性別",
+      "layout": "horizontal",
+      "options": [
+        "男",
+        "女"
+      ]
+    },
+    {
+      "id": "age",
+      "type": "radio",
+      "enabled": true,
+      "required": true,
+      "title": "年齡區段",
+      "options": [
+        "20歲以下",
+        "21-35歲",
+        "36-50歲",
+        "51-65歲",
+        "65歲以上"
+      ]
+    },
+    {
+      "id": "source",
+      "type": "checkbox",
+      "enabled": true,
+      "required": false,
+      "title": "從哪得知 (可複選)",
+      "options": [
+        "網路",
+        "親友推薦",
+        "實體傳單或海報",
+        "治療所現場得知"
+      ]
+    },
+    {
+      "id": "remind",
+      "type": "remind-section",
+      "enabled": true,
+      "required": true,
+      "title": "是否接收活動提醒",
+      "methods": {
+        "line": {
+          "enabled": true
+        },
+        "email": {
+          "enabled": true
+        }
+      }
+    }
+  ]
+};
+
+        // 嵌入渲染引擎
+        /**
  * 表單渲染引擎
  * 負責根據 JSON 配置動態生成表單
  */
@@ -209,7 +542,7 @@ class FormRenderer {
     renderTextInput(field) {
         return `
             <div class="form-group">
-                <label class="section-title" for="${field.id}">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
+                <label class="section-title" for="${field.id}">${field.title}</label>
                 <input type="${field.type}" 
                        id="${field.id}" 
                        placeholder="${field.placeholder || ''}" 
@@ -235,7 +568,7 @@ class FormRenderer {
 
         return `
             <div class="form-group">
-                <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
+                <label class="section-title">${field.title}</label>
                 <div class="radio-group" style="${isHorizontal ? 'flex-direction: row; gap: 20px;' : ''}">
                     ${options}
                 </div>
@@ -256,7 +589,7 @@ class FormRenderer {
 
         return `
             <div class="form-group">
-                <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
+                <label class="section-title">${field.title}</label>
                 <div class="checkbox-group">
                     ${options}
                 </div>
@@ -270,7 +603,7 @@ class FormRenderer {
     renderTextarea(field) {
         return `
             <div class="form-group">
-                <label class="section-title" for="${field.id}">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
+                <label class="section-title" for="${field.id}">${field.title}</label>
                 <textarea id="${field.id}" 
                           placeholder="${field.placeholder || ''}" 
                           rows="4"
@@ -286,7 +619,7 @@ class FormRenderer {
     renderRemindSection(field) {
         return `
             <div class="form-group">
-                <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
+                <label class="section-title">${field.title}</label>
                 <div class="radio-group" style="flex-direction: row; gap: 20px;">
                     <label class="option-label" style="flex:1">
                         <input type="radio" name="needRemind" value="是" onclick="window.toggleRemindSection(true)" ${field.required ? 'required' : ''}>
@@ -694,3 +1027,18 @@ class FormRenderer {
 
 // 匯出供外部使用
 window.FormRenderer = FormRenderer;
+
+
+        // 初始化
+        (async function() {
+            const renderer = new FormRenderer(CONFIG);
+            renderer.render('formContainer');
+            
+            // 如果有 LIFF ID 則初始化 LIFF
+            if (CONFIG.formMeta.liffId) {
+                await renderer.initLiff();
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -5,11 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>表單配置編輯器</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f5f5f5;
+            line-height: 1.6;
         }
 
         .editor-container {
@@ -47,8 +53,9 @@
 
         .form-section-title {
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             color: #333;
+            font-size: 16px;
         }
 
         .input-group {
@@ -84,6 +91,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: opacity 0.2s;
+            font-size: 14px;
         }
 
         .btn:hover {
@@ -105,33 +113,76 @@
             color: white;
         }
 
-        .field-item {
+        /* 卡片樣式 */
+        .field-card {
             background: white;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .field-card.expanded {
+            border-color: #06c755;
+        }
+
+        .field-card.is-default {
+            border-left: 4px solid #06c755;
+        }
+
+        .field-card-header {
+            padding: 15px;
+            background: #f8f9fa;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
+            user-select: none;
         }
 
-        .field-item-title {
-            font-weight: 500;
+        .field-card-header:hover {
+            background: #e9ecef;
         }
 
-        .field-item-type {
+        .field-card-title-section {
+            flex: 1;
+        }
+
+        .field-card-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .field-card-meta {
             font-size: 12px;
             color: #666;
-            background: #e9ecef;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-left: 8px;
         }
 
-        .field-controls {
+        .field-type-badge {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-right: 8px;
+        }
+
+        .field-default-badge {
+            display: inline-block;
+            background: #d4edda;
+            color: #155724;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .field-card-controls {
             display: flex;
-            gap: 8px;
+            gap: 10px;
+            align-items: center;
         }
 
         .toggle-switch {
@@ -142,6 +193,7 @@
             border-radius: 12px;
             cursor: pointer;
             transition: background 0.3s;
+            flex-shrink: 0;
         }
 
         .toggle-switch.active {
@@ -162,6 +214,106 @@
 
         .toggle-switch.active::after {
             left: 28px;
+        }
+
+        .expand-icon {
+            font-size: 18px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .field-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .field-card-body {
+            padding: 20px;
+            display: none;
+            border-top: 1px solid #e0e0e0;
+            background: white;
+        }
+
+        .field-card.expanded .field-card-body {
+            display: block;
+        }
+
+        .edit-group {
+            margin-bottom: 15px;
+        }
+
+        .edit-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .edit-group input[type="text"],
+        .edit-group textarea,
+        .edit-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .edit-group textarea {
+            min-height: 80px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-item {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .option-item input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .option-item .btn-danger {
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+
+        .btn-add-option {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .remind-toggles {
+            display: flex;
+            gap: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .remind-toggle-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .remind-toggle-item label {
+            margin: 0;
+            font-weight: normal;
+            font-size: 14px;
         }
 
         .preview-frame {
@@ -190,6 +342,22 @@
             display: flex;
             gap: 10px;
         }
+
+        .add-field-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .add-field-form {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .add-field-form.active {
+            display: block;
+        }
     </style>
 </head>
 
@@ -202,6 +370,7 @@
             <button class="btn btn-secondary" onclick="loadConfig()">載入配置</button>
             <button class="btn btn-secondary" onclick="importJSON()">匯入 JSON</button>
             <button class="btn btn-primary" onclick="exportJSON()">匯出 JSON</button>
+            <button class="btn btn-primary" onclick="exportHTML()">匯出 HTML</button>
         </div>
     </div>
 
@@ -226,6 +395,38 @@
                 </div>
 
                 <div class="input-group">
+                    <label>網站基礎路徑（選填）</label>
+                    <input type="text" id="basePath" placeholder="例如: /template-system 或留空"
+                        onchange="updateConfigUrl()">
+                    <small style="color: #666; font-size: 12px; margin-top: 4px; display: block;">
+                        如果表單不在網站根目錄，請填寫路徑。例如：/template-system
+                    </small>
+                </div>
+
+                <div class="input-group">
+                    <label>配置檔名稱（英文，用於網址）</label>
+                    <input type="text" id="configFileName" placeholder="例如: event-2026-01" onchange="updateConfigUrl()">
+                    <small style="color: #666; font-size: 12px; margin-top: 4px; display: block;">
+                        建議使用英文、數字和連字號，例如：event-2026-01、lecture-jan
+                    </small>
+                </div>
+
+                <div class="input-group">
+                    <label>表單網址（含參數）</label>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <input type="text" id="configUrl" readonly style="background: #f5f5f5; cursor: text;"
+                            placeholder="請先設定配置檔名稱">
+                        <button class="btn btn-secondary" onclick="copyConfigUrl()"
+                            style="white-space: nowrap; padding: 8px 16px;">
+                            📋 複製
+                        </button>
+                    </div>
+                    <small style="color: #666; font-size: 12px; margin-top: 4px; display: block;">
+                        將此網址設定到 LINE LIFF 或分享給使用者
+                    </small>
+                </div>
+
+                <div class="input-group">
                     <label>LIFF ID</label>
                     <input type="text" id="liffId" placeholder="例: 2008806287-9a1hHluF">
                 </div>
@@ -246,9 +447,10 @@
                 <div class="form-section-title">橫幅設定</div>
 
                 <div class="input-group">
-                    <label>
-                        <input type="checkbox" id="bannerEnabled" checked onchange="updatePreview()">
-                        顯示橫幅
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="bannerEnabled" checked onchange="updatePreview()"
+                            style="width: auto; cursor: pointer;">
+                        <span>顯示橫幅</span>
                     </label>
                 </div>
 
@@ -263,15 +465,100 @@
                 </div>
             </div>
 
+            <!-- 活動內容 -->
+            <div class="form-section">
+                <div class="form-section-title">活動內容</div>
+
+                <div class="input-group">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="activityInfoEnabled" checked onchange="updatePreview()"
+                            style="width: auto; cursor: pointer;">
+                        <span>顯示活動內容區塊</span>
+                    </label>
+                </div>
+
+                <div class="input-group">
+                    <label>區塊標題</label>
+                    <input type="text" id="activityInfoTitle" value="活動內容" onchange="updatePreview()">
+                </div>
+
+                <div class="input-group">
+                    <label>內容說明</label>
+                    <textarea id="activityInfoContent" placeholder="請輸入活動內容說明..." onchange="updatePreview()"></textarea>
+                </div>
+            </div>
+
+            <!-- 地點資訊 -->
+            <div class="form-section">
+                <div class="form-section-title">地點資訊</div>
+
+                <div class="input-group">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="locationEnabled" checked onchange="updatePreview()"
+                            style="width: auto; cursor: pointer;">
+                        <span>顯示地點資訊區塊</span>
+                    </label>
+                </div>
+
+                <div class="input-group">
+                    <label>區塊標題</label>
+                    <input type="text" id="locationTitle" value="地點" onchange="updatePreview()">
+                </div>
+
+                <div class="input-group">
+                    <label>場地名稱</label>
+                    <input type="text" id="locationPlaceName" placeholder="例：頭頸專研物理治療所" onchange="updatePreview()">
+                </div>
+
+                <div class="input-group">
+                    <label>地址</label>
+                    <input type="text" id="locationAddress" placeholder="例：台北市信義虎林街164巷34號1樓"
+                        onchange="updatePreview()">
+                </div>
+
+                <div class="input-group">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="locationShowMap" checked onchange="updatePreview()"
+                            style="width: auto; cursor: pointer;">
+                        <span>顯示 Google 地圖連結</span>
+                    </label>
+                </div>
+            </div>
+
             <!-- 欄位管理 -->
             <div class="form-section">
                 <div class="form-section-title">表單欄位</div>
                 <div id="fieldsList">
-                    <!-- 欄位列表將由 JavaScript 生成 -->
+                    <!-- 欄位卡片將由 JavaScript 生成 -->
                 </div>
-                <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="addField()">
-                    + 新增欄位
-                </button>
+
+                <!-- 新增欄位區域 -->
+                <div class="add-field-section">
+                    <button class="btn btn-primary" style="width: 100%;" onclick="toggleAddFieldForm()">
+                        + 新增欄位
+                    </button>
+
+                    <div id="addFieldForm" class="add-field-form">
+                        <div class="edit-group">
+                            <label>欄位類型</label>
+                            <select id="newFieldType" onchange="updateNewFieldForm()">
+                                <option value="">-- 請選擇 --</option>
+                                <option value="text">文字輸入</option>
+                                <option value="email">Email</option>
+                                <option value="textarea">文字區域</option>
+                                <option value="radio">單選</option>
+                                <option value="checkbox">複選</option>
+                            </select>
+                        </div>
+
+                        <div id="newFieldFormContent"></div>
+
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn btn-primary" style="flex: 1;" onclick="saveNewField()">確定新增</button>
+                            <button class="btn btn-secondary" style="flex: 1;" onclick="cancelAddField()">取消</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div style="margin-top: 20px; text-align: center;">

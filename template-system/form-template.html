@@ -208,14 +208,14 @@
     </div>
 
     <!-- 表單渲染引擎 -->
-    <script src="form-renderer.js"></script>
+    <script src="configs/form-renderer.js"></script>
 
     <script>
         // 從 URL 參數取得配置檔名稱或預覽模式
         const urlParams = new URLSearchParams(window.location.search);
         const isPreviewMode = urlParams.get('preview') === 'true';
         const configName = urlParams.get('config') || 'default-config';
-        const configUrl = `./configs/${configName}.json`;
+        const configUrl = `./configs-export/${configName}.json`;
 
         // 載入配置並渲染表單
         async function loadAndRender() {

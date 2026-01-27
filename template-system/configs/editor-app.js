@@ -675,7 +675,7 @@ async function exportHTML() {
     // 讀取 form-renderer.js 的內容
     let rendererCode = '';
     try {
-        const response = await fetch('./form-renderer.js');
+        const response = await fetch('./configs/form-renderer.js');
         rendererCode = await response.text();
     } catch (error) {
         alert('無法讀取 form-renderer.js，請確認檔案存在');

@@ -1,33 +1,33 @@
 {
   "formMeta": {
-    "title": "活動報名表",
-    "version": "1.0",
-    "basePath": "",
-    "configFileName": "",
-    "liffId": "",
-    "lineOaId": "",
-    "gasUrl": ""
+    "title": "頭頸專研活動報名表",
+    "version": "2.0",
+    "liffId": "2008806287-9a1hHluF",
+    "lineOaId": "@246trduk",
+    "gasUrl": "https://script.google.com/macros/s/AKfycbx74tnCe5wk-9WXWR-6Nrb8VE1R3iaXq33T6tpitgjk0PCYreNSoilkQ6QSDhghf4jlPQ/exec",
+    "basePath": "https://hnptc.github.io/RegistrationForm/template-system",
+    "configFileName": "event_2026_02"
   },
   "banner": {
-    "enabled": false,
-    "imageUrl": "",
-    "altText": "活動橫幅"
+    "enabled": true,
+    "imageUrl": "https://duk.tw/ehKVRe.jpg",
+    "altText": "講座橫幅"
   },
   "infoBlocks": [
     {
       "id": "activity-info",
       "enabled": true,
       "title": "活動內容",
-      "content": "請在此填寫活動說明..."
+      "content": "十六年經驗專業物理治療師授課,現場分析肩頸僵硬來源、學習肩頸狀況自我檢測及舒緩方法。\n\n入場當天還可參加抽獎,有機會獲得小禮物哦！\n\n免費入場。座位有限,額滿為止。"
     },
     {
       "id": "location",
       "enabled": true,
       "title": "地點",
-      "placeName": "",
-      "address": "",
+      "placeName": "頭頸專研物理治療所",
+      "address": "台北市信義虎林街164巷34號1樓",
       "showMap": true,
-      "mapQuery": ""
+      "mapQuery": "頭頸專研物理治療所+台北市信義虎林街164巷34號1樓"
     }
   ],
   "formFields": [
@@ -38,9 +38,11 @@
       "required": true,
       "title": "報名場次",
       "options": [
-        "場次 1",
-        "場次 2",
-        "場次 3"
+        "1/30 (五) 10:00 - 11:30",
+        "2/08 (日) 14:30 - 16:00",
+        "2/11 (三) 19:00 - 20:30",
+        "2/24 (二) 14:30 - 16:00",
+        "3/02 (一) 19:00 - 20:30"
       ]
     },
     {
@@ -87,7 +89,7 @@
         "網路",
         "親友推薦",
         "實體傳單或海報",
-        "其他"
+        "治療所現場得知"
       ]
     },
     {

@@ -542,7 +542,7 @@ class FormRenderer {
     renderTextInput(field) {
         return `
             <div class="form-group">
-                <label class="section-title" for="${field.id}">${field.title}</label>
+                <label class="section-title" for="${field.id}">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <input type="${field.type}" 
                        id="${field.id}" 
                        placeholder="${field.placeholder || ''}" 
@@ -568,7 +568,7 @@ class FormRenderer {
 
         return `
             <div class="form-group">
-                <label class="section-title">${field.title}</label>
+                <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <div class="radio-group" style="${isHorizontal ? 'flex-direction: row; gap: 20px;' : ''}">
                     ${options}
                 </div>
@@ -589,7 +589,7 @@ class FormRenderer {
 
         return `
             <div class="form-group">
-                <label class="section-title">${field.title}</label>
+                <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <div class="checkbox-group">
                     ${options}
                 </div>
@@ -603,7 +603,7 @@ class FormRenderer {
     renderTextarea(field) {
         return `
             <div class="form-group">
-                <label class="section-title" for="${field.id}">${field.title}</label>
+                <label class="section-title" for="${field.id}">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <textarea id="${field.id}" 
                           placeholder="${field.placeholder || ''}" 
                           rows="4"
@@ -619,7 +619,7 @@ class FormRenderer {
     renderRemindSection(field) {
         return `
             <div class="form-group">
-                <label class="section-title">${field.title}</label>
+                <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <div class="radio-group" style="flex-direction: row; gap: 20px;">
                     <label class="option-label" style="flex:1">
                         <input type="radio" name="needRemind" value="是" onclick="window.toggleRemindSection(true)" ${field.required ? 'required' : ''}>

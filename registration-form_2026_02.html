@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -205,13 +206,14 @@
             #formContainer {
                 padding: 20px 15px;
             }
-            
+
             h1 {
                 font-size: 1.5em;
             }
         }
     </style>
 </head>
+
 <body>
     <div id="formContainer"></div>
     <div id="successView" class="hidden"></div>
@@ -219,116 +221,116 @@
     <script>
         // 嵌入配置
         const CONFIG = {
-  "formMeta": {
-    "title": "頭頸專研活動報名表",
-    "version": "2.0",
-    "liffId": "2008806287-9a1hHluF",
-    "lineOaId": "@246trduk",
-    "gasUrl": "https://script.google.com/macros/s/AKfycbx74tnCe5wk-9WXWR-6Nrb8VE1R3iaXq33T6tpitgjk0PCYreNSoilkQ6QSDhghf4jlPQ/exec",
-    "basePath": "https://hnptc.github.io/RegistrationForm/template-system",
-    "configFileName": "event_2026_02"
-  },
-  "banner": {
-    "enabled": true,
-    "imageUrl": "https://duk.tw/ehKVRe.jpg",
-    "altText": "講座橫幅"
-  },
-  "infoBlocks": [
-    {
-      "id": "activity-info",
-      "enabled": true,
-      "title": "活動內容",
-      "content": "十六年經驗專業物理治療師授課,現場分析肩頸僵硬來源、學習肩頸狀況自我檢測及舒緩方法。\n\n入場當天還可參加抽獎,有機會獲得小禮物哦！\n\n免費入場。座位有限,額滿為止。"
-    },
-    {
-      "id": "location",
-      "enabled": true,
-      "title": "地點",
-      "placeName": "頭頸專研物理治療所",
-      "address": "台北市信義虎林街164巷34號1樓",
-      "showMap": true,
-      "mapQuery": "頭頸專研物理治療所+台北市信義虎林街164巷34號1樓"
-    }
-  ],
-  "formFields": [
-    {
-      "id": "session",
-      "type": "radio",
-      "enabled": true,
-      "required": true,
-      "title": "報名場次",
-      "options": [
-        "1/30 (五) 10:00 - 11:30",
-        "2/08 (日) 14:30 - 16:00",
-        "2/11 (三) 19:00 - 20:30",
-        "2/24 (二) 14:30 - 16:00",
-        "3/02 (一) 19:00 - 20:30"
-      ]
-    },
-    {
-      "id": "realName",
-      "type": "text",
-      "enabled": true,
-      "required": true,
-      "title": "姓名",
-      "placeholder": "請輸入您的真實姓名"
-    },
-    {
-      "id": "gender",
-      "type": "radio",
-      "enabled": true,
-      "required": true,
-      "title": "性別",
-      "layout": "horizontal",
-      "options": [
-        "男",
-        "女"
-      ]
-    },
-    {
-      "id": "age",
-      "type": "radio",
-      "enabled": true,
-      "required": true,
-      "title": "年齡區段",
-      "options": [
-        "20歲以下",
-        "21-35歲",
-        "36-50歲",
-        "51-65歲",
-        "65歲以上"
-      ]
-    },
-    {
-      "id": "source",
-      "type": "checkbox",
-      "enabled": true,
-      "required": false,
-      "title": "從哪得知 (可複選)",
-      "options": [
-        "網路",
-        "親友推薦",
-        "實體傳單或海報",
-        "治療所現場得知"
-      ]
-    },
-    {
-      "id": "remind",
-      "type": "remind-section",
-      "enabled": true,
-      "required": true,
-      "title": "是否接收活動提醒",
-      "methods": {
-        "line": {
-          "enabled": true
-        },
-        "email": {
-          "enabled": true
-        }
-      }
-    }
-  ]
-};
+            "formMeta": {
+                "title": "頭頸專研活動報名表",
+                "version": "2.0",
+                "liffId": "2008806287-9a1hHluF",
+                "lineOaId": "@246trduk",
+                "gasUrl": "https://script.google.com/macros/s/AKfycbx74tnCe5wk-9WXWR-6Nrb8VE1R3iaXq33T6tpitgjk0PCYreNSoilkQ6QSDhghf4jlPQ/exec",
+                "basePath": "https://hnptc.github.io/RegistrationForm/template-system",
+                "configFileName": "event_2026_02"
+            },
+            "banner": {
+                "enabled": true,
+                "imageUrl": "https://duk.tw/GEAc1P.jpg",
+                "altText": "講座橫幅"
+            },
+            "infoBlocks": [
+                {
+                    "id": "activity-info",
+                    "enabled": true,
+                    "title": "活動內容",
+                    "content": "十六年經驗專業物理治療師授課,現場分析肩頸僵硬來源、學習肩頸狀況自我檢測及舒緩方法。\n\n入場當天還可參加抽獎,有機會獲得小禮物哦！\n\n免費入場。座位有限,額滿為止。"
+                },
+                {
+                    "id": "location",
+                    "enabled": true,
+                    "title": "地點",
+                    "placeName": "頭頸專研物理治療所",
+                    "address": "台北市信義虎林街164巷34號1樓",
+                    "showMap": true,
+                    "mapQuery": "頭頸專研物理治療所+台北市信義虎林街164巷34號1樓"
+                }
+            ],
+            "formFields": [
+                {
+                    "id": "session",
+                    "type": "radio",
+                    "enabled": true,
+                    "required": true,
+                    "title": "報名場次",
+                    "options": [
+                        "1/30 (五) 10:00 - 11:30",
+                        "2/08 (日) 14:30 - 16:00",
+                        "2/11 (三) 19:00 - 20:30",
+                        "2/24 (二) 14:30 - 16:00",
+                        "3/02 (一) 19:00 - 20:30"
+                    ]
+                },
+                {
+                    "id": "realName",
+                    "type": "text",
+                    "enabled": true,
+                    "required": true,
+                    "title": "姓名",
+                    "placeholder": "請輸入您的真實姓名"
+                },
+                {
+                    "id": "gender",
+                    "type": "radio",
+                    "enabled": true,
+                    "required": true,
+                    "title": "性別",
+                    "layout": "horizontal",
+                    "options": [
+                        "男",
+                        "女"
+                    ]
+                },
+                {
+                    "id": "age",
+                    "type": "radio",
+                    "enabled": true,
+                    "required": true,
+                    "title": "年齡區段",
+                    "options": [
+                        "20歲以下",
+                        "21-35歲",
+                        "36-50歲",
+                        "51-65歲",
+                        "65歲以上"
+                    ]
+                },
+                {
+                    "id": "source",
+                    "type": "checkbox",
+                    "enabled": true,
+                    "required": false,
+                    "title": "從哪得知 (可複選)",
+                    "options": [
+                        "網路",
+                        "親友推薦",
+                        "實體傳單或海報",
+                        "治療所現場得知"
+                    ]
+                },
+                {
+                    "id": "remind",
+                    "type": "remind-section",
+                    "enabled": true,
+                    "required": true,
+                    "title": "是否接收活動提醒",
+                    "methods": {
+                        "line": {
+                            "enabled": true
+                        },
+                        "email": {
+                            "enabled": true
+                        }
+                    }
+                }
+            ]
+        };
 
         // 嵌入渲染引擎
         /**
@@ -336,143 +338,143 @@
  * 負責根據 JSON 配置動態生成表單
  */
 
-class FormRenderer {
-    constructor(config) {
-        this.config = config;
-        this.userProfile = { userId: '', displayName: '' };
-        this.isGuest = true;
-    }
-
-    /**
-     * 初始化 LIFF
-     */
-    async initLiff() {
-        if (!this.config.formMeta.liffId) {
-            console.warn('未設定 LIFF ID');
-            return;
-        }
-
-        try {
-            await liff.init({ liffId: this.config.formMeta.liffId });
-
-            // 還原表單資料
-            this.restoreFormData();
-
-            if (liff.isLoggedIn()) {
-                this.isGuest = false;
-                const profile = await liff.getProfile();
-                this.userProfile.userId = profile.userId;
-                this.userProfile.displayName = profile.displayName;
-                this.updateLineStatusUI(true);
-            } else {
+        class FormRenderer {
+            constructor(config) {
+                this.config = config;
+                this.userProfile = { userId: '', displayName: '' };
                 this.isGuest = true;
-                this.updateLineStatusUI(false);
             }
-        } catch (err) {
-            console.error('LIFF Init Error:', err);
-            this.showStatus('系統初始化失敗,請重新整理。', 'error');
-        }
-    }
 
-    /**
-     * 渲染完整表單
-     */
-    render(containerId = 'formContainer') {
-        const container = document.getElementById(containerId);
-        if (!container) {
-            console.error('找不到容器元素:', containerId);
-            return;
-        }
-
-        let html = '';
-
-        // 版本號
-        html += this.renderVersion();
-
-        // 標題
-        html += this.renderTitle();
-
-        // 橫幅
-        if (this.config.banner && this.config.banner.enabled) {
-            html += this.renderBanner();
-        }
-
-        // 資訊區塊
-        if (this.config.infoBlocks) {
-            this.config.infoBlocks.forEach(block => {
-                if (block.enabled) {
-                    html += this.renderInfoBlock(block);
+            /**
+             * 初始化 LIFF
+             */
+            async initLiff() {
+                if (!this.config.formMeta.liffId) {
+                    console.warn('未設定 LIFF ID');
+                    return;
                 }
-            });
-        }
 
-        // 表單開始
-        html += '<form id="mainForm">';
+                try {
+                    await liff.init({ liffId: this.config.formMeta.liffId });
 
-        // 表單欄位
-        if (this.config.formFields) {
-            this.config.formFields.forEach(field => {
-                if (field.enabled) {
-                    html += this.renderField(field);
+                    // 還原表單資料
+                    this.restoreFormData();
+
+                    if (liff.isLoggedIn()) {
+                        this.isGuest = false;
+                        const profile = await liff.getProfile();
+                        this.userProfile.userId = profile.userId;
+                        this.userProfile.displayName = profile.displayName;
+                        this.updateLineStatusUI(true);
+                    } else {
+                        this.isGuest = true;
+                        this.updateLineStatusUI(false);
+                    }
+                } catch (err) {
+                    console.error('LIFF Init Error:', err);
+                    this.showStatus('系統初始化失敗,請重新整理。', 'error');
                 }
-            });
-        }
+            }
 
-        // 提交按鈕
-        html += this.renderSubmitButton();
+            /**
+             * 渲染完整表單
+             */
+            render(containerId = 'formContainer') {
+                const container = document.getElementById(containerId);
+                if (!container) {
+                    console.error('找不到容器元素:', containerId);
+                    return;
+                }
 
-        // 表單結束
-        html += '</form>';
+                let html = '';
 
-        // 狀態訊息
-        html += '<div id="status"></div>';
+                // 版本號
+                html += this.renderVersion();
 
-        container.innerHTML = html;
+                // 標題
+                html += this.renderTitle();
 
-        // 綁定事件
-        this.bindEvents();
-    }
+                // 橫幅
+                if (this.config.banner && this.config.banner.enabled) {
+                    html += this.renderBanner();
+                }
 
-    /**
-     * 渲染版本號
-     */
-    renderVersion() {
-        return `
+                // 資訊區塊
+                if (this.config.infoBlocks) {
+                    this.config.infoBlocks.forEach(block => {
+                        if (block.enabled) {
+                            html += this.renderInfoBlock(block);
+                        }
+                    });
+                }
+
+                // 表單開始
+                html += '<form id="mainForm">';
+
+                // 表單欄位
+                if (this.config.formFields) {
+                    this.config.formFields.forEach(field => {
+                        if (field.enabled) {
+                            html += this.renderField(field);
+                        }
+                    });
+                }
+
+                // 提交按鈕
+                html += this.renderSubmitButton();
+
+                // 表單結束
+                html += '</form>';
+
+                // 狀態訊息
+                html += '<div id="status"></div>';
+
+                container.innerHTML = html;
+
+                // 綁定事件
+                this.bindEvents();
+            }
+
+            /**
+             * 渲染版本號
+             */
+            renderVersion() {
+                return `
             <div style="text-align: right; font-size: 12px; color: #aaa; margin-bottom: 0;">
                 ${this.config.formMeta.title} ver${this.config.formMeta.version}
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染標題
-     */
-    renderTitle() {
-        return `<h1>📝 ${this.config.formMeta.title}</h1>`;
-    }
+            /**
+             * 渲染標題
+             */
+            renderTitle() {
+                return `<h1>📝 ${this.config.formMeta.title}</h1>`;
+            }
 
-    /**
-     * 渲染橫幅
-     */
-    renderBanner() {
-        return `
+            /**
+             * 渲染橫幅
+             */
+            renderBanner() {
+                return `
             <div class="w-full mb-5">
                 <img src="${this.config.banner.imageUrl}" 
                      alt="${this.config.banner.altText || '活動橫幅'}" 
                      class="w-full h-auto block rounded-lg">
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染資訊區塊
-     */
-    renderInfoBlock(block) {
-        if (block.id === 'location') {
-            return this.renderLocationBlock(block);
-        }
+            /**
+             * 渲染資訊區塊
+             */
+            renderInfoBlock(block) {
+                if (block.id === 'location') {
+                    return this.renderLocationBlock(block);
+                }
 
-        return `
+                return `
             <div class="form-group">
                 <div style="margin-bottom: 10px; font-weight: bold; color: #333; font-size: 1.05em; border-left: 4px solid var(--primary-color); padding-left: 8px;">
                     ${block.title}
@@ -484,13 +486,13 @@ class FormRenderer {
                 </div>
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染地點區塊
-     */
-    renderLocationBlock(block) {
-        return `
+            /**
+             * 渲染地點區塊
+             */
+            renderLocationBlock(block) {
+                return `
             <div class="form-group">
                 <div style="margin-bottom: 10px; font-weight: bold; color: #333; font-size: 1.05em; border-left: 4px solid var(--primary-color); padding-left: 8px;">
                     ${block.title}
@@ -512,35 +514,35 @@ class FormRenderer {
                 </div>
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染欄位
-     */
-    renderField(field) {
-        switch (field.type) {
-            case 'text':
-            case 'email':
-                return this.renderTextInput(field);
-            case 'radio':
-                return this.renderRadio(field);
-            case 'checkbox':
-                return this.renderCheckbox(field);
-            case 'remind-section':
-                return this.renderRemindSection(field);
-            case 'textarea':
-                return this.renderTextarea(field);
-            default:
-                console.warn('未知的欄位類型:', field.type);
-                return '';
-        }
-    }
+            /**
+             * 渲染欄位
+             */
+            renderField(field) {
+                switch (field.type) {
+                    case 'text':
+                    case 'email':
+                        return this.renderTextInput(field);
+                    case 'radio':
+                        return this.renderRadio(field);
+                    case 'checkbox':
+                        return this.renderCheckbox(field);
+                    case 'remind-section':
+                        return this.renderRemindSection(field);
+                    case 'textarea':
+                        return this.renderTextarea(field);
+                    default:
+                        console.warn('未知的欄位類型:', field.type);
+                        return '';
+                }
+            }
 
-    /**
-     * 渲染文字輸入
-     */
-    renderTextInput(field) {
-        return `
+            /**
+             * 渲染文字輸入
+             */
+            renderTextInput(field) {
+                return `
             <div class="form-group">
                 <label class="section-title" for="${field.id}">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <input type="${field.type}" 
@@ -549,14 +551,14 @@ class FormRenderer {
                        ${field.required ? 'required' : ''}>
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染單選
-     */
-    renderRadio(field) {
-        const isHorizontal = field.layout === 'horizontal';
-        const options = field.options.map((option, index) => `
+            /**
+             * 渲染單選
+             */
+            renderRadio(field) {
+                const isHorizontal = field.layout === 'horizontal';
+                const options = field.options.map((option, index) => `
             <label class="option-label" style="${isHorizontal ? 'flex:1' : ''}">
                 <input type="radio" 
                        name="${field.id}" 
@@ -566,7 +568,7 @@ class FormRenderer {
             </label>
         `).join('');
 
-        return `
+                return `
             <div class="form-group">
                 <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <div class="radio-group" style="${isHorizontal ? 'flex-direction: row; gap: 20px;' : ''}">
@@ -574,20 +576,20 @@ class FormRenderer {
                 </div>
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染複選
-     */
-    renderCheckbox(field) {
-        const options = field.options.map(option => `
+            /**
+             * 渲染複選
+             */
+            renderCheckbox(field) {
+                const options = field.options.map(option => `
             <label class="option-label">
                 <input type="checkbox" name="${field.id}" value="${option}">
                 ${option}
             </label>
         `).join('');
 
-        return `
+                return `
             <div class="form-group">
                 <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <div class="checkbox-group">
@@ -595,13 +597,13 @@ class FormRenderer {
                 </div>
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染文字區域
-     */
-    renderTextarea(field) {
-        return `
+            /**
+             * 渲染文字區域
+             */
+            renderTextarea(field) {
+                return `
             <div class="form-group">
                 <label class="section-title" for="${field.id}">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <textarea id="${field.id}" 
@@ -611,13 +613,13 @@ class FormRenderer {
                           ${field.required ? 'required' : ''}></textarea>
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染提醒設定區塊
-     */
-    renderRemindSection(field) {
-        return `
+            /**
+             * 渲染提醒設定區塊
+             */
+            renderRemindSection(field) {
+                return `
             <div class="form-group">
                 <label class="section-title">${field.title}${field.required ? '<span style="color: #e53935;"> *</span>' : ''}</label>
                 <div class="radio-group" style="flex-direction: row; gap: 20px;">
@@ -663,268 +665,268 @@ class FormRenderer {
                 </div>
             </div>
         `;
-    }
+            }
 
-    /**
-     * 渲染提交按鈕
-     */
-    renderSubmitButton() {
-        return `
+            /**
+             * 渲染提交按鈕
+             */
+            renderSubmitButton() {
+                return `
             <div class="action-area">
                 <button type="button" id="btnSubmit" class="submit-btn" onclick="window.handleSubmit()">
                     送出報名
                 </button>
             </div>
         `;
-    }
-
-    /**
-     * 綁定事件
-     */
-    bindEvents() {
-        // 將方法綁定到 window 供 HTML 使用
-        window.toggleRemindSection = this.toggleRemindSection.bind(this);
-        window.toggleLineInput = this.toggleLineInput.bind(this);
-        window.toggleEmailInput = this.toggleEmailInput.bind(this);
-        window.handleLineLogin = this.handleLineLogin.bind(this);
-        window.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    /**
-     * 切換提醒區域顯示
-     */
-    toggleRemindSection(show) {
-        const div = document.getElementById('remindDetails');
-        if (div) {
-            div.style.display = show ? 'block' : 'none';
-
-            if (!show) {
-                const checkLine = document.getElementById('checkLine');
-                const checkEmail = document.getElementById('checkEmail');
-                if (checkLine) checkLine.checked = false;
-                if (checkEmail) checkEmail.checked = false;
-                this.toggleLineInput();
-                this.toggleEmailInput();
             }
-        }
-    }
 
-    /**
-     * 切換 Line 連結按鈕顯示
-     */
-    toggleLineInput() {
-        const isChecked = document.getElementById('checkLine')?.checked;
-        const area = document.getElementById('lineConnectArea');
-        if (area) {
-            area.style.display = isChecked ? 'block' : 'none';
-        }
-    }
-
-    /**
-     * 切換 Email 輸入框顯示
-     */
-    toggleEmailInput() {
-        const isChecked = document.getElementById('checkEmail')?.checked;
-        const area = document.getElementById('emailInputArea');
-        if (area) {
-            area.style.display = isChecked ? 'block' : 'none';
-            if (isChecked) {
-                document.getElementById('emailInput')?.focus();
+            /**
+             * 綁定事件
+             */
+            bindEvents() {
+                // 將方法綁定到 window 供 HTML 使用
+                window.toggleRemindSection = this.toggleRemindSection.bind(this);
+                window.toggleLineInput = this.toggleLineInput.bind(this);
+                window.toggleEmailInput = this.toggleEmailInput.bind(this);
+                window.handleLineLogin = this.handleLineLogin.bind(this);
+                window.handleSubmit = this.handleSubmit.bind(this);
             }
-        }
-    }
 
-    /**
-     * 更新 Line 狀態 UI
-     */
-    updateLineStatusUI(isLoggedIn) {
-        const btn = document.getElementById('btnLineLogin');
-        const txt = document.getElementById('lineStatusText');
+            /**
+             * 切換提醒區域顯示
+             */
+            toggleRemindSection(show) {
+                const div = document.getElementById('remindDetails');
+                if (div) {
+                    div.style.display = show ? 'block' : 'none';
 
-        if (btn && txt) {
-            if (isLoggedIn) {
-                btn.classList.add('hidden');
-                txt.classList.remove('hidden');
-                txt.innerText = `您好 ${this.userProfile.displayName},Line 已連結`;
-            } else {
-                btn.classList.remove('hidden');
-                txt.classList.add('hidden');
-                btn.innerText = '連結 Line 帳號';
+                    if (!show) {
+                        const checkLine = document.getElementById('checkLine');
+                        const checkEmail = document.getElementById('checkEmail');
+                        if (checkLine) checkLine.checked = false;
+                        if (checkEmail) checkEmail.checked = false;
+                        this.toggleLineInput();
+                        this.toggleEmailInput();
+                    }
+                }
             }
-        }
-    }
 
-    /**
-     * 處理 Line 登入
-     */
-    handleLineLogin() {
-        if (!liff.isLoggedIn()) {
-            this.saveFormData();
-            liff.login({ redirectUri: window.location.href });
-        }
-    }
+            /**
+             * 切換 Line 連結按鈕顯示
+             */
+            toggleLineInput() {
+                const isChecked = document.getElementById('checkLine')?.checked;
+                const area = document.getElementById('lineConnectArea');
+                if (area) {
+                    area.style.display = isChecked ? 'block' : 'none';
+                }
+            }
 
-    /**
-     * 處理表單提交
-     */
-    async handleSubmit() {
-        const form = document.getElementById('mainForm');
+            /**
+             * 切換 Email 輸入框顯示
+             */
+            toggleEmailInput() {
+                const isChecked = document.getElementById('checkEmail')?.checked;
+                const area = document.getElementById('emailInputArea');
+                if (area) {
+                    area.style.display = isChecked ? 'block' : 'none';
+                    if (isChecked) {
+                        document.getElementById('emailInput')?.focus();
+                    }
+                }
+            }
 
-        // 基本驗證
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-        }
+            /**
+             * 更新 Line 狀態 UI
+             */
+            updateLineStatusUI(isLoggedIn) {
+                const btn = document.getElementById('btnLineLogin');
+                const txt = document.getElementById('lineStatusText');
 
-        // 收集表單資料
-        const formData = this.collectFormData();
+                if (btn && txt) {
+                    if (isLoggedIn) {
+                        btn.classList.add('hidden');
+                        txt.classList.remove('hidden');
+                        txt.innerText = `您好 ${this.userProfile.displayName},Line 已連結`;
+                    } else {
+                        btn.classList.remove('hidden');
+                        txt.classList.add('hidden');
+                        btn.innerText = '連結 Line 帳號';
+                    }
+                }
+            }
 
-        // 自訂驗證
-        if (!this.validateFormData(formData)) {
-            return;
-        }
+            /**
+             * 處理 Line 登入
+             */
+            handleLineLogin() {
+                if (!liff.isLoggedIn()) {
+                    this.saveFormData();
+                    liff.login({ redirectUri: window.location.href });
+                }
+            }
 
-        // 準備提交
-        const btnSubmit = document.getElementById('btnSubmit');
-        btnSubmit.disabled = true;
-        btnSubmit.innerText = '資料傳送中...';
+            /**
+             * 處理表單提交
+             */
+            async handleSubmit() {
+                const form = document.getElementById('mainForm');
 
-        try {
-            await this.submitToGAS(formData);
-            this.showSuccessView(formData);
-        } catch (error) {
-            console.error('Submit Error:', error);
-            this.showStatus('❌ 傳送失敗,請檢查網路或稍後再試', 'error');
-            btnSubmit.disabled = false;
-            btnSubmit.innerText = '送出報名';
-        }
-    }
+                // 基本驗證
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
 
-    /**
-     * 收集表單資料
-     */
-    collectFormData() {
-        const data = {
-            uid: this.isGuest ? 'guest' : this.userProfile.userId,
-            lineName: this.isGuest ? '' : this.userProfile.displayName
-        };
+                // 收集表單資料
+                const formData = this.collectFormData();
 
-        // 收集所有欄位
-        this.config.formFields.forEach(field => {
-            if (!field.enabled) return;
+                // 自訂驗證
+                if (!this.validateFormData(formData)) {
+                    return;
+                }
 
-            switch (field.type) {
-                case 'text':
-                case 'email':
-                case 'textarea':
-                    const input = document.getElementById(field.id);
-                    if (input) data[field.id] = input.value.trim();
-                    break;
+                // 準備提交
+                const btnSubmit = document.getElementById('btnSubmit');
+                btnSubmit.disabled = true;
+                btnSubmit.innerText = '資料傳送中...';
 
-                case 'radio':
-                    const radio = document.querySelector(`input[name="${field.id}"]:checked`);
-                    if (radio) data[field.id] = radio.value;
-                    break;
+                try {
+                    await this.submitToGAS(formData);
+                    this.showSuccessView(formData);
+                } catch (error) {
+                    console.error('Submit Error:', error);
+                    this.showStatus('❌ 傳送失敗,請檢查網路或稍後再試', 'error');
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerText = '送出報名';
+                }
+            }
 
-                case 'checkbox':
-                    const checkboxes = document.querySelectorAll(`input[name="${field.id}"]:checked`);
-                    data[field.id] = Array.from(checkboxes).map(cb => cb.value).join(', ');
-                    break;
+            /**
+             * 收集表單資料
+             */
+            collectFormData() {
+                const data = {
+                    uid: this.isGuest ? 'guest' : this.userProfile.userId,
+                    lineName: this.isGuest ? '' : this.userProfile.displayName
+                };
 
-                case 'remind-section':
-                    const needRemind = document.querySelector('input[name="needRemind"]:checked')?.value;
+                // 收集所有欄位
+                this.config.formFields.forEach(field => {
+                    if (!field.enabled) return;
+
+                    switch (field.type) {
+                        case 'text':
+                        case 'email':
+                        case 'textarea':
+                            const input = document.getElementById(field.id);
+                            if (input) data[field.id] = input.value.trim();
+                            break;
+
+                        case 'radio':
+                            const radio = document.querySelector(`input[name="${field.id}"]:checked`);
+                            if (radio) data[field.id] = radio.value;
+                            break;
+
+                        case 'checkbox':
+                            const checkboxes = document.querySelectorAll(`input[name="${field.id}"]:checked`);
+                            data[field.id] = Array.from(checkboxes).map(cb => cb.value).join(', ');
+                            break;
+
+                        case 'remind-section':
+                            const needRemind = document.querySelector('input[name="needRemind"]:checked')?.value;
+                            const checkLine = document.getElementById('checkLine')?.checked;
+                            const checkEmail = document.getElementById('checkEmail')?.checked;
+                            const emailVal = document.getElementById('emailInput')?.value.trim();
+
+                            data.needRemind = needRemind;
+                            data.lineRemind = (needRemind === '是' && checkLine) ? '是' : '否';
+                            data.email = emailVal || '';
+                            data.emailRemind = (needRemind === '是' && checkEmail) ? '是' : '否';
+
+                            // 計算提醒日期
+                            if (needRemind === '是' && data.session) {
+                                const dateMatch = data.session.match(/(\d+)\/(\d+)/);
+                                if (dateMatch) {
+                                    const year = new Date().getFullYear();
+                                    data.remindDate = `${year}-${dateMatch[1].padStart(2, '0')}-${dateMatch[2].padStart(2, '0')}`;
+                                }
+                            }
+                            break;
+                    }
+                });
+
+                return data;
+            }
+
+            /**
+             * 驗證表單資料
+             */
+            validateFormData(data) {
+                // 驗證來源複選
+                const sourceField = this.config.formFields.find(f => f.id === 'source' && f.enabled);
+                if (sourceField && (!data.source || data.source === '')) {
+                    alert('請至少選擇一項「從哪得知」');
+                    return false;
+                }
+
+                // 驗證提醒設定
+                if (data.needRemind === '是') {
                     const checkLine = document.getElementById('checkLine')?.checked;
                     const checkEmail = document.getElementById('checkEmail')?.checked;
-                    const emailVal = document.getElementById('emailInput')?.value.trim();
 
-                    data.needRemind = needRemind;
-                    data.lineRemind = (needRemind === '是' && checkLine) ? '是' : '否';
-                    data.email = emailVal || '';
-                    data.emailRemind = (needRemind === '是' && checkEmail) ? '是' : '否';
-
-                    // 計算提醒日期
-                    if (needRemind === '是' && data.session) {
-                        const dateMatch = data.session.match(/(\d+)\/(\d+)/);
-                        if (dateMatch) {
-                            const year = new Date().getFullYear();
-                            data.remindDate = `${year}-${dateMatch[1].padStart(2, '0')}-${dateMatch[2].padStart(2, '0')}`;
-                        }
+                    if (!checkLine && !checkEmail) {
+                        alert('接收提醒需至少勾選 Line 或 Email 其中一種方式喔！');
+                        return false;
                     }
-                    break;
-            }
-        });
 
-        return data;
-    }
+                    if (checkLine && this.isGuest) {
+                        alert('Line 通知提醒,請點擊「連結 Line 帳號」按鈕並完成登入授權。');
+                        return false;
+                    }
 
-    /**
-     * 驗證表單資料
-     */
-    validateFormData(data) {
-        // 驗證來源複選
-        const sourceField = this.config.formFields.find(f => f.id === 'source' && f.enabled);
-        if (sourceField && (!data.source || data.source === '')) {
-            alert('請至少選擇一項「從哪得知」');
-            return false;
-        }
+                    if (checkEmail && !data.email) {
+                        alert('Email 通知,請確實填寫 Email 欄位。');
+                        document.getElementById('emailInput')?.focus();
+                        return false;
+                    }
+                }
 
-        // 驗證提醒設定
-        if (data.needRemind === '是') {
-            const checkLine = document.getElementById('checkLine')?.checked;
-            const checkEmail = document.getElementById('checkEmail')?.checked;
-
-            if (!checkLine && !checkEmail) {
-                alert('接收提醒需至少勾選 Line 或 Email 其中一種方式喔！');
-                return false;
+                return true;
             }
 
-            if (checkLine && this.isGuest) {
-                alert('Line 通知提醒,請點擊「連結 Line 帳號」按鈕並完成登入授權。');
-                return false;
+            /**
+             * 提交到 GAS
+             */
+            async submitToGAS(data) {
+                await fetch(this.config.formMeta.gasUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' }
+                });
             }
 
-            if (checkEmail && !data.email) {
-                alert('Email 通知,請確實填寫 Email 欄位。');
-                document.getElementById('emailInput')?.focus();
-                return false;
-            }
-        }
+            /**
+             * 顯示成功畫面
+             */
+            showSuccessView(data) {
+                localStorage.removeItem('liff_form_temp');
+                document.getElementById('formContainer').style.display = 'none';
 
-        return true;
-    }
+                const successView = document.getElementById('successView');
+                if (successView) {
+                    successView.classList.remove('hidden');
+                    if (data.needRemind === '是') {
+                        const remindMsg = document.getElementById('remindMsg');
+                        if (remindMsg) remindMsg.style.display = 'inline';
+                    }
 
-    /**
-     * 提交到 GAS
-     */
-    async submitToGAS(data) {
-        await fetch(this.config.formMeta.gasUrl, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
+                    // 動態生成成功畫面內容
+                    const lineOaId = this.config.formMeta.lineOaId || '@246trduk';
+                    const lineUrl = `https://line.me/R/ti/p/${lineOaId}`;
 
-    /**
-     * 顯示成功畫面
-     */
-    showSuccessView(data) {
-        localStorage.removeItem('liff_form_temp');
-        document.getElementById('formContainer').style.display = 'none';
-
-        const successView = document.getElementById('successView');
-        if (successView) {
-            successView.classList.remove('hidden');
-            if (data.needRemind === '是') {
-                const remindMsg = document.getElementById('remindMsg');
-                if (remindMsg) remindMsg.style.display = 'inline';
-            }
-
-            // 動態生成成功畫面內容
-            const lineOaId = this.config.formMeta.lineOaId || '@246trduk';
-            const lineUrl = `https://line.me/R/ti/p/${lineOaId}`;
-
-            successView.innerHTML = `
+                    successView.innerHTML = `
                 <div style="font-size: 60px; margin-bottom: 10px;">✅</div>
                 <h2 style="color: var(--primary-color); margin-top: 0;">報名成功！</h2>
                 <p style="color: #666; line-height: 1.6; margin-bottom: 30px;">
@@ -974,66 +976,66 @@ class FormRenderer {
                     加入後如有疑問可直接傳訊諮詢
                 </p>
             `;
+                }
+            }
+
+            /**
+             * 顯示狀態訊息
+             */
+            showStatus(message, type = 'info') {
+                const statusDiv = document.getElementById('status');
+                if (statusDiv) {
+                    statusDiv.textContent = message;
+                    statusDiv.style.color = type === 'error' ? 'red' : '#666';
+                }
+            }
+
+            /**
+             * 儲存表單資料
+             */
+            saveFormData() {
+                const formData = this.collectFormData();
+                localStorage.setItem('liff_form_temp', JSON.stringify(formData));
+            }
+
+            /**
+             * 還原表單資料
+             */
+            restoreFormData() {
+                const saved = localStorage.getItem('liff_form_temp');
+                if (!saved) return;
+
+                try {
+                    const data = JSON.parse(saved);
+
+                    // 延遲還原,等待 DOM 渲染完成
+                    setTimeout(() => {
+                        Object.keys(data).forEach(key => {
+                            const input = document.getElementById(key);
+                            if (input) {
+                                input.value = data[key];
+                            }
+
+                            // 還原單選
+                            const radio = document.querySelector(`input[name="${key}"][value="${data[key]}"]`);
+                            if (radio) radio.click();
+                        });
+                    }, 100);
+                } catch (e) {
+                    console.error('Restore Error', e);
+                }
+            }
         }
-    }
 
-    /**
-     * 顯示狀態訊息
-     */
-    showStatus(message, type = 'info') {
-        const statusDiv = document.getElementById('status');
-        if (statusDiv) {
-            statusDiv.textContent = message;
-            statusDiv.style.color = type === 'error' ? 'red' : '#666';
-        }
-    }
-
-    /**
-     * 儲存表單資料
-     */
-    saveFormData() {
-        const formData = this.collectFormData();
-        localStorage.setItem('liff_form_temp', JSON.stringify(formData));
-    }
-
-    /**
-     * 還原表單資料
-     */
-    restoreFormData() {
-        const saved = localStorage.getItem('liff_form_temp');
-        if (!saved) return;
-
-        try {
-            const data = JSON.parse(saved);
-
-            // 延遲還原,等待 DOM 渲染完成
-            setTimeout(() => {
-                Object.keys(data).forEach(key => {
-                    const input = document.getElementById(key);
-                    if (input) {
-                        input.value = data[key];
-                    }
-
-                    // 還原單選
-                    const radio = document.querySelector(`input[name="${key}"][value="${data[key]}"]`);
-                    if (radio) radio.click();
-                });
-            }, 100);
-        } catch (e) {
-            console.error('Restore Error', e);
-        }
-    }
-}
-
-// 匯出供外部使用
-window.FormRenderer = FormRenderer;
+        // 匯出供外部使用
+        window.FormRenderer = FormRenderer;
 
 
         // 初始化
-        (async function() {
+        (async function () {
             const renderer = new FormRenderer(CONFIG);
             renderer.render('formContainer');
-            
+
             // 如果有 LIFF ID 則初始化 LIFF
             if (CONFIG.formMeta.liffId) {
                 await renderer.initLiff();
@@ -1041,4 +1043,5 @@ window.FormRenderer = FormRenderer;
         })();
     </script>
 </body>
+
 </html>

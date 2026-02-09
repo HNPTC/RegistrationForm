@@ -307,6 +307,9 @@ class FormRenderer {
                             <input type="checkbox" id="checkLine" onchange="window.toggleLineInput()">
                             <span style="font-weight: bold; margin-left: 5px;">Line 通知</span>
                         </label>
+                        <div style="font-size: 0.85em; color: #ff9800; margin-top: 5px; margin-left: 25px;">
+                            ⚠️ 需加入官方帳號好友才能正常接收提醒
+                        </div>
                         <div id="lineConnectArea" style="margin-top: 10px; display: none;">
                             <button type="button" id="btnLineLogin" class="connect-btn" onclick="window.handleLineLogin()">
                                 連結 Line 帳號

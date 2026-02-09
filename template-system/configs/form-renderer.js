@@ -8,6 +8,8 @@ class FormRenderer {
         this.config = config;
         this.userProfile = { userId: '', displayName: '' };
         this.isGuest = true;
+        this.isFriend = false; // 是否為官方帳號好友
+        this.friendshipChecked = false; // 是否已檢查過好友狀態
     }
 
     /**
@@ -30,9 +32,14 @@ class FormRenderer {
                 const profile = await liff.getProfile();
                 this.userProfile.userId = profile.userId;
                 this.userProfile.displayName = profile.displayName;
+
+                // 檢查好友狀態
+                await this.checkFriendshipStatus();
+
                 this.updateLineStatusUI(true);
             } else {
                 this.isGuest = true;
+                this.isFriend = false;
                 this.updateLineStatusUI(false);
             }
         } catch (err) {
@@ -309,7 +316,7 @@ class FormRenderer {
                         </label>
                         <div id="lineConnectArea" style="margin-top: 10px; display: none;">
                             <button type="button" id="btnLineLogin" class="connect-btn" onclick="window.handleLineLogin()">
-                                連結 Line 帳號
+                                加入 Line 好友並連結帳號
                             </button>
                             <span id="lineStatusText" class="line-status-text hidden"></span>
                         </div>
@@ -402,6 +409,43 @@ class FormRenderer {
     }
 
     /**
+     * 檢查好友狀態 (呼叫 GAS API)
+     */
+    async checkFriendshipStatus() {
+        if (!this.userProfile.userId || this.friendshipChecked) {
+            return;
+        }
+
+        try {
+            // 從配置中取得 GAS URL,並加上查詢參數
+            const gasUrl = this.config.formMeta.gasUrl;
+            const checkUrl = `${gasUrl}?action=checkFriendship&userId=${encodeURIComponent(this.userProfile.userId)}`;
+
+            const response = await fetch(checkUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.isFriend = result.isFriend;
+                this.friendshipChecked = true;
+                console.log('好友狀態:', this.isFriend ? '已加好友' : '未加好友');
+            } else {
+                console.warn('好友狀態檢查失敗:', result.error);
+                this.isFriend = false;
+            }
+        } catch (error) {
+            console.error('好友狀態檢查錯誤:', error);
+            this.isFriend = false;
+        }
+    }
+
+
+    /**
      * 更新 Line 狀態 UI
      */
     updateLineStatusUI(isLoggedIn) {
@@ -409,14 +453,21 @@ class FormRenderer {
         const txt = document.getElementById('lineStatusText');
 
         if (btn && txt) {
-            if (isLoggedIn) {
+            if (isLoggedIn && this.isFriend) {
+                // 已登入且已加好友
                 btn.classList.add('hidden');
                 txt.classList.remove('hidden');
-                txt.innerText = `您好 ${this.userProfile.displayName},Line 已連結`;
-            } else {
+                txt.innerText = `您好 ${this.userProfile.displayName},已加入好友並連結`;
+            } else if (isLoggedIn && !this.isFriend) {
+                // 已登入但未加好友
                 btn.classList.remove('hidden');
                 txt.classList.add('hidden');
-                btn.innerText = '連結 Line 帳號';
+                btn.innerText = '加入 Line 好友並連結帳號';
+            } else {
+                // 未登入
+                btn.classList.remove('hidden');
+                txt.classList.add('hidden');
+                btn.innerText = '加入 Line 好友並連結帳號';
             }
         }
     }
@@ -425,10 +476,28 @@ class FormRenderer {
      * 處理 Line 登入
      */
     handleLineLogin() {
-        if (!liff.isLoggedIn()) {
-            this.saveFormData();
-            liff.login({ redirectUri: window.location.href });
-        }
+        // 儲存表單資料
+        this.saveFormData();
+
+        // 開啟加好友連結
+        const lineOaId = this.config.formMeta.lineOaId || '@246trduk';
+        const lineUrl = `https://line.me/R/ti/p/${lineOaId}`;
+
+        liff.openWindow({
+            url: lineUrl,
+            external: true
+        });
+
+        // 延遲後執行登入或重新整理
+        setTimeout(() => {
+            if (!liff.isLoggedIn()) {
+                // 未登入: 執行登入
+                liff.login({ redirectUri: window.location.href });
+            } else {
+                // 已登入但未加好友: 重新整理以更新好友狀態
+                window.location.reload();
+            }
+        }, 2000);
     }
 
     /**
@@ -521,6 +590,9 @@ class FormRenderer {
             }
         });
 
+        // 新增好友狀態
+        data.isFriend = this.isFriend ? '是' : (this.isGuest ? '未登入' : '否');
+
         return data;
     }
 
@@ -545,9 +617,17 @@ class FormRenderer {
                 return false;
             }
 
-            if (checkLine && this.isGuest) {
-                alert('Line 通知提醒,請點擊「連結 Line 帳號」按鈕並完成登入授權。');
-                return false;
+            if (checkLine) {
+                if (this.isGuest) {
+                    alert('Line 通知提醒,請點擊「加入 Line 好友並連結帳號」按鈕並完成操作。');
+                    return false;
+                }
+
+                // 檢查是否已加好友
+                if (!this.isFriend) {
+                    alert('請先加入官方 Line 好友,才能接收 Line 通知提醒。\n\n請點擊「加入 Line 好友並連結帳號」按鈕完成加好友。');
+                    return false;
+                }
             }
 
             if (checkEmail && !data.email) {

@@ -33,8 +33,8 @@ class FormRenderer {
                 this.userProfile.userId = profile.userId;
                 this.userProfile.displayName = profile.displayName;
 
-                // 簡化版本: 不檢查好友狀態
-                // await this.checkFriendshipStatus();
+                // 檢查好友狀態
+                await this.checkFriendshipStatus();
 
                 this.updateLineStatusUI(true);
             } else {
@@ -314,12 +314,9 @@ class FormRenderer {
                             <input type="checkbox" id="checkLine" onchange="window.toggleLineInput()">
                             <span style="font-weight: bold; margin-left: 5px;">Line 通知</span>
                         </label>
-                        <div style="font-size: 0.85em; color: #ff9800; margin-top: 5px; margin-left: 25px;">
-                            ⚠️ 需加入官方帳號好友才能正常接收提醒
-                        </div>
                         <div id="lineConnectArea" style="margin-top: 10px; display: none;">
                             <button type="button" id="btnLineLogin" class="connect-btn" onclick="window.handleLineLogin()">
-                                連結 Line 帳號
+                                加入 Line 好友並連結帳號
                             </button>
                             <span id="lineStatusText" class="line-status-text hidden"></span>
                         </div>
@@ -461,22 +458,34 @@ class FormRenderer {
         const btn = document.getElementById('btnLineLogin');
         const txt = document.getElementById('lineStatusText');
 
+        // 除錯訊息
+        console.log('=== updateLineStatusUI 除錯 ===');
+        console.log('isLoggedIn:', isLoggedIn);
+        console.log('this.isGuest:', this.isGuest);
+        console.log('this.isFriend:', this.isFriend);
+        console.log('this.friendshipChecked:', this.friendshipChecked);
+        console.log('btn 存在:', !!btn);
+        console.log('txt 存在:', !!txt);
+
         if (btn && txt) {
             if (isLoggedIn && this.isFriend) {
                 // 已登入且已加好友
+                console.log('→ 狀態: 已登入且已加好友 - 隱藏按鈕');
                 btn.classList.add('hidden');
                 txt.classList.remove('hidden');
                 txt.innerText = `您好 ${this.userProfile.displayName},已加入好友並連結`;
             } else if (isLoggedIn && !this.isFriend) {
                 // 已登入但未加好友
+                console.log('→ 狀態: 已登入但未加好友 - 顯示按鈕');
                 btn.classList.remove('hidden');
                 txt.classList.add('hidden');
-                btn.innerText = '連結 Line 帳號';
+                btn.innerText = '加入 Line 好友並連結帳號';
             } else {
                 // 未登入
+                console.log('→ 狀態: 未登入 - 顯示按鈕');
                 btn.classList.remove('hidden');
                 txt.classList.add('hidden');
-                btn.innerText = '連結 Line 帳號';
+                btn.innerText = '加入 Line 好友並連結帳號';
             }
         }
     }
@@ -485,10 +494,28 @@ class FormRenderer {
      * 處理 Line 登入
      */
     handleLineLogin() {
-        if (!liff.isLoggedIn()) {
-            this.saveFormData();
-            liff.login({ redirectUri: window.location.href });
-        }
+        // 儲存表單資料
+        this.saveFormData();
+
+        // 開啟加好友連結
+        const lineOaId = this.config.formMeta.lineOaId || '@246trduk';
+        const lineUrl = `https://line.me/R/ti/p/${lineOaId}`;
+
+        liff.openWindow({
+            url: lineUrl,
+            external: true
+        });
+
+        // 延遲後執行登入或重新整理
+        setTimeout(() => {
+            if (!liff.isLoggedIn()) {
+                // 未登入: 執行登入
+                liff.login({ redirectUri: window.location.href });
+            } else {
+                // 已登入但未加好友: 重新整理以更新好友狀態
+                window.location.reload();
+            }
+        }, 2000);
     }
 
     /**

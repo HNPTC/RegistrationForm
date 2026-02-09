@@ -390,7 +390,13 @@ class FormRenderer {
         const isChecked = document.getElementById('checkLine')?.checked;
         const area = document.getElementById('lineConnectArea');
         if (area) {
-            area.style.display = isChecked ? 'block' : 'none';
+            if (isChecked) {
+                area.style.display = 'block';
+                // 更新 UI 以反映當前的登入和好友狀態
+                this.updateLineStatusUI(!this.isGuest);
+            } else {
+                area.style.display = 'none';
+            }
         }
     }
 

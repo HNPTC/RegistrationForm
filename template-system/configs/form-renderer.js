@@ -458,19 +458,31 @@ class FormRenderer {
         const btn = document.getElementById('btnLineLogin');
         const txt = document.getElementById('lineStatusText');
 
+        // 除錯訊息
+        console.log('=== updateLineStatusUI 除錯 ===');
+        console.log('isLoggedIn:', isLoggedIn);
+        console.log('this.isGuest:', this.isGuest);
+        console.log('this.isFriend:', this.isFriend);
+        console.log('this.friendshipChecked:', this.friendshipChecked);
+        console.log('btn 存在:', !!btn);
+        console.log('txt 存在:', !!txt);
+
         if (btn && txt) {
             if (isLoggedIn && this.isFriend) {
                 // 已登入且已加好友
+                console.log('→ 狀態: 已登入且已加好友 - 隱藏按鈕');
                 btn.classList.add('hidden');
                 txt.classList.remove('hidden');
                 txt.innerText = `您好 ${this.userProfile.displayName},已加入好友並連結`;
             } else if (isLoggedIn && !this.isFriend) {
                 // 已登入但未加好友
+                console.log('→ 狀態: 已登入但未加好友 - 顯示按鈕');
                 btn.classList.remove('hidden');
                 txt.classList.add('hidden');
                 btn.innerText = '加入 Line 好友並連結帳號';
             } else {
                 // 未登入
+                console.log('→ 狀態: 未登入 - 顯示按鈕');
                 btn.classList.remove('hidden');
                 txt.classList.add('hidden');
                 btn.innerText = '加入 Line 好友並連結帳號';

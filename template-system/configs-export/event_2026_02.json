@@ -9,8 +9,8 @@
     "configFileName": "event_2026_02"
   },
   "banner": {
-    "enabled": true,
-    "imageUrl": "https://duk.tw/xi1DIY.jpg",
+    "enabled": false,
+    "imageUrl": "https://duk.tw/ehKVRe.jpg",
     "altText": "講座橫幅"
   },
   "infoBlocks": [
@@ -24,10 +24,10 @@
       "id": "location",
       "enabled": true,
       "title": "地點",
-      "placeName": "頭頸專研物理治療所",
-      "address": "台北市信義虎林街164巷34號1樓",
+      "placeName": "富台里里民活動中心",
+      "address": "臺北市忠孝東路5段423巷4弄22號",
       "showMap": true,
-      "mapQuery": "頭頸專研物理治療所+台北市信義虎林街164巷34號1樓"
+      "mapQuery": "富台里里民活動中心+臺北市忠孝東路5段423巷4弄22號"
     }
   ],
   "formFields": [
@@ -38,10 +38,7 @@
       "required": true,
       "title": "報名場次",
       "options": [
-        "2/08 (日) 14:30 - 16:00",
-        "2/11 (三) 19:00 - 20:30",
-        "2/24 (二) 14:30 - 16:00",
-        "3/02 (一) 19:00 - 20:30"
+        "03/09（一）早上 10:00 - 11:30"
       ]
     },
     {
